@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Backup Chat</title>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+        <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.3/dist/semantic.min.css"
+        />
+
+        <link rel="stylesheet" type="text/css" href="main.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+        <script>
+            const socket = io();
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.3/dist/semantic.min.js"></script>
+    </head>
+
+    <body>
+        <div class="ui mini menu">
+            <a class="active item">
+    			Backup Chat
+  			</a>
+        </div>
+
+        {{#if user}}
+        <div id="content-container">
+            <div id="info-section">
+                <div class="ui card" id="announcement-card">
+                    <div class="content">
+                        <div class="header">Announcements</div>
+                    </div>
+                    <div class="content" id="announcement-content">
+                        <p>No new announcements</p>
+                    </div>
+                </div>
+
+                <div class="ui card" id="news-card">
+                    <div class="content">
+                        <div class="header">News</div>
+                    </div>
+                    <div class="content" id="news-content">
+                        <p>No new posts have been made</p>
+                    </div>
+                </div>
+
+                <div class="ui card" id="profile-card">
+                    <div class="image">
+						<img
+                            src={{user.avatarURL}}
+                        />
+                    </div>
+                    <div class="content">
+                        <a class="header">{{user.username}}</a>
+                        <div class="meta">
+                            <span class="date">#{{user.discriminator}}</span>
+                        </div>
+                        <div class="description">
+							<!--
+                            <a class="ui primary label role-tag">Role Name</a>
+							-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="message-section">
+                <div class="ui fluid card" id="message-card">
+                    <div class="content">
+                        <div class="header">#backup-chat</div>
+                    </div>
+                    <div class="content" id="message-container">
+                        <div class="ui minimal comments" id="messages">
+                            <!--
+							<div class="comment">
+                                <a class="avatar">
+                                    <img
+                                        src="https://fomantic-ui.com/images/avatar/small/stevie.jpg"
+                                    />
+                                </a>
+                                <div class="content">
+                                    <a class="author">Stevie Feliciano</a>
+                                    <div class="metadata">
+                                        <div class="date">2 days ago</div>
+                                    </div>
+                                    <div class="text">
+                                        Message
+                                    </div>
+                                </div>
+                            </div>
+							-->
+                        </div>
+                    </div>
+                    <div class="ui reply form">
+                        <input
+                            placeholder="Message #backup-chat"
+                            id="msg-input"
+                        ></input>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <a class="ui inverted fluid violet button" href="/api/discord/login">
+            Login With Discord
+        </a>
+        {{/if}}
+
+        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+        <script src="functions.js"></script>
+    </body>
+</html>
